@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+ templates
+{% endblock title %}
+{% block content %}
+
+<section class="accessory section bd-container" id="accessory">
+
+    <div class="accessory__container bd-grid">
+        {% for post in posts %} 
+        <div class="accessory__content">
+            <a href="{% url 'post-detail' post.id %}">
+                <img src="{{ post.Image.url }}" alt="" class="accessory__img">
+            </a>
+            <a href="{% url 'post-detail' post.id %}"><span class="accessory__category">{{post.title}}</span></a>
+            {% if post.amount == 'free' %}
+            <span class="accessory__preci">{{post.amount}}</span>
+            {% else %}
+            <span class="accessory__preci">₦{{post.amount}}</span>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock content %}

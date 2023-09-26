@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--========== BOX ICONS ==========-->
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+        <!--========== CSS ==========-->
+        <link rel="stylesheet" href="{% static 'app/assets/css/styles.css' %}">
+        
+        <!--========== FAV ==========-->
+        <link rel="shortcut icon" href="{% static 'app/assets/img/fav.png' %}" type="image/x-icon">
+        <title>crystal city | {% block title %}  {% endblock title %}</title>
+        <style>
+            .accessory__img{
+                width: 500px;
+                border-radius: 5px;
+            }
+            .btn-search
+            {
+                padding-left: 10px;
+                padding-right: 10px;
+                border: 0;
+                background-color: #0055ff;
+                color: white;
+                width: 50px;
+                height: 40px;
+                border-radius: 5px;
+                transition: 1s;
+                cursor: pointer;
+            }
+            .btn-search:hover
+            {
+                transform: scale(0.9);
+                background-color: #313133;
+            }
+            .input-search
+            {
+                margin-left: -30px;
+                height: 40px;
+                border-radius: 5px;
+                padding-left: 10px;
+            }
+            .accessory__button:hover{
+                transition: 1s;
+                transform: scale(1.1);
+                background-color: #313133;
+            }
+            .accessory__img:hover{
+                transition: 1s;
+                transform: scale(1.1);
+            }
+            .template_container{
+                border: 0 solid black;
+                height: 500px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                justify-items: center;
+                padding: 0;
+            }
+            .template_container iframe{
+                border-radius: 20px;
+            }
+            .register_form{
+                margin-top: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <!--========== SCROLL TOP ==========-->
+        <a href="#" class="scrolltop" id="scroll-top">
+            <i class='bx bx-up-arrow-alt scrolltop__icon'></i>
+        </a>
+        
+        <!--========== HEADER ==========-->
+        <header class="l-header" id="header">
+            <nav class="nav bd-container">
+                {% if user.is_authenticated %}
+                <a href="{% url 'home' %}" class="nav__logo">Crystal City</a>
+                {% else %}
+                <a href="{% url 'index' %}" class="nav__logo">Crystal City</a>
+                {% endif %}
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        {% if user.is_authenticated %}
+                        <li class="nav__item"><a href="{% url 'home' %}" class="nav__link active-link">Home</a></li>
+                        <li class="nav__item">
+                            <form action="{% url 'search' %}" method="POST">
+                                {% csrf_token %}
+                                <input name="search" type="search" placeholder="example: portfolio" aria-label="Search" class="input-search">
+                                <button class="btn-search" type="submit"><i class='bx bx-search'></i></button>
+                            </form>
+                        </li>
+                        {% else %}
+                        <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
+                        <li class="nav__item"><a href="#about_us" class="nav__link">About us</a></li>
+                        <li class="nav__item"><a href="#why_choose_us" class="nav__link">why choose us?</a></li>
+                        <li class="nav__item"><a href="#mission" class="nav__link">Our Mission</a></li>
+                        <li class="nav__item"><a href="{% url 'login' %}" class="nav__link">Sign In/Up</a></li>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                        <li class="nav__item"><a href="{% url 'logout' %}" class="nav__link">Log Out</a></li>
+                        {% endif %}
+                        <li><i class='bx bx-toggle-left change-theme' id="theme-button"></i></li>
+                    </ul>
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class='bx bx-grid-alt'></i>
+                </div>
+            </nav>
+        </header>
+
+        <main class="l-main">
+            {% block content %}
+
+            {% endblock %}
+        </main>
+
+        <!--========== FOOTER ==========-->
+        <footer class="footer section">
+            <div class="footer__container bd-container bd-grid">
+
+                <div class="footer__content">
+                    <h3 class="footer__title">Socials</h3>
+                    <a href="https://twitter.com/c___city?s=09" class="footer__social"><i class='bx bxl-twitter'></i></a>
+                    <a href="https://instagram.com/c___city?igshid=MzNlNGNkZWQ4Mg==" class="footer__social"><i class='bx bxl-instagram-alt'></i></a>
+                </div>
+            </div>
+
+            <p class="footer__copy">&#169; 2023 crystal city. All right reserved</p>
+        </footer>
+
+        <script>
+            const paymentForm =  document.getElementById('paymentForm');
+            paymentForm.addEventListener('submit', payWithPaystack, false);
+            function payWithPaystack(e) {
+                e.preventDefault();
+        
+                let handler = PaystackPop.setup({
+                        key:'pk_live_67a55089e4829715b7fe2a879ce7da74297cb8a0',
+                        email: '{{request.user.email}}',
+                        amount:'{{ post.amount }}' * 100,
+                        currency:'NGN',
+                        ref:'ccity'+Math.floor((Math.random() * 1000000000) + 1),
+        
+                        onClose: function()
+                        {
+                            alert('Transaction was not completed, Window closed.');
+                        },
+        
+                        callback: function(response)
+                        {
+                            a = document.getElementById('btnDownload');
+                            a.click();
+                            let message = 'Payment complete!';
+                            alert(message);
+                        },
+        
+                    });
+        
+                    handler.openIframe();
+            }
+        </script>
+        
+        <script src="{% static 'app/assets/js/pay.js' %}"></script>
+        <script src="https://js.paystack.co/v1/inline.js"></script>   
+
+        <!--========== SCROLL REVEAL ==========-->
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+        <!--========== MAIN JS ==========-->
+        <script src="{% static 'app/assets/js/main.js' %}"></script>
+    </body>
+</html>

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+ search
+{% endblock title %}
+{% block content %}
+
+{% if search %}
+<!--========== ACCESSORIES ==========-->
+<section class="accessory section bd-container" id="accessory">
+
+    <div class="accessory__container bd-grid">
+        {% for x in title %} 
+        <div class="accessory__content">
+            <a href="{% url 'post-detail' x.id %}">
+                <img src="{{ x.Image.url }}" alt="" class="accessory__img">
+            </a>
+            <a href="{% url 'post-detail' x.id %}"><span class="accessory__category">{{x.title}}</span></a>
+            {% if x.amount == 'free' %}
+            <span class="accessory__preci">{{x.amount}}</span>
+            {% else %}
+            <span class="accessory__preci">₦{{x.amount}}</span>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        {% for x in date_posted  %} 
+        <div class="accessory__content">
+            <a href="{% url 'post-detail' x.id %}">
+                <img src="{{ x.Image.url }}" alt="" class="accessory__img">
+            </a>
+            <a href="{% url 'post-detail' x.id %}"><span class="accessory__category">{{x.title}}</span></a>
+            {% if x.amount == 'free' %}
+            <span class="accessory__preci">{{x.amount}}</span>
+            {% else %}
+            <span class="accessory__preci">₦{{x.amount}}</span>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% else %}
+<center style="margin-top: 100px;">
+    <h1> You Forgot to Search ..</h1>
+</center>
+{% endif %} 
+{% endblock content %}

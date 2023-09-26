@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    welcome
+{% endblock title %}
+{% block content %}
+    <!--========== HOME ==========-->
+    <section class="home" id="home">
+        <div class="home__container bd-container bd-grid">
+            <div class="home__img">
+                <img src="{% static 'app/assets/img/home.png' %}" alt="">
+            </div>
+
+            <div class="home__data">
+                <h1 class="home__title">Welcome to Crystal City</h1>
+                <p class="home__description">Your gateway to unlocking the full potential of web development! 🚀</p>
+                <a href="{% url 'register' %}" class="button">Get Started</a>
+            </div>   
+        </div>
+    </section>
+
+    <!--========== SHARE ==========-->
+    <section class="share section bd-container" id="about_us">
+        <div class="share__container bd-grid">
+            <div class="share__data">
+                <h2 class="section-title-center">About Us</h2>
+                <p class="share__description">Are you ready to revolutionize your web projects with cutting-edge front-end programs written in HTML, CSS, and JavaScript? Look no further! We are dedicated to empowering developers and businesses with the tools and expertise needed to create stunning, interactive, and user-friendly web applications.</p>
+            </div>
+
+            <div class="share__data">
+                <p class="share__description">At Crystal City, we understand that the front end is the face of your digital presence. It's what captures your audience's attention, keeps them engaged, and ultimately drives success. That's why we've poured our passion and expertise into crafting exceptional front-end programs that will elevate your web development game to new heights.</p>
+            </div>
+
+            <div class="share__img">
+                <img src="{% static 'app/assets/img/about.png' %}" alt="">
+            </div>
+        </div>
+    </section>
+
+    <!--========== DECORATION ==========-->
+    <section class="decoration section bd-container" id="why_choose_us">
+        <h2 class="section-title">Why choose us?</h2>
+        <div class="decoration__container bd-grid">
+            <div class="decoration__data">
+                <h3 class="decoration__title">🌟 Expertise</h3>
+                <p class="share__description decoration__description">Our team comprises seasoned developers who live and breathe HTML, CSS, and JavaScript. We've mastered the art of crafting beautiful, responsive, and performant web solutions that leave a lasting impression.</p>
+            </div>
+
+            <div class="decoration__data">
+                <h3 class="decoration__title">🚀 Innovation</h3>
+                <p class="share__description decoration__description">Stay ahead of the curve with our innovative front-end programs. We're committed to staying up-to-date with the latest web technologies and trends, ensuring your projects are always on the cutting edge.</p>
+            </div>
+
+            <div class="decoration__data">
+                <h3 class="decoration__title">🔒 Security</h3>
+                <p class="share__description decoration__description">Trust is paramount in the digital world. Our programs come equipped with robust security features to safeguard your data and protect your users, giving you peace of mind.</p>
+            </div>
+
+            <div class="decoration__data">
+                <h3 class="decoration__title">💼 Versatility</h3>
+                <p class="share__description decoration__description">Whether you're a freelance developer, a startup founder, or a seasoned enterprise, our front-end programs are tailored to meet your specific needs, providing versatility and scalability.</p>
+            </div>
+        </div>
+    </section>
+
+    <!--========== SEND GIFT ==========-->
+    <section class="send section" id="mission">
+        <div class="send__container bd-container bd-grid">
+            <div class="send__content">
+                <h2 class="section-title-center send__title">Our Mission</h2>
+                <p class="send__description"><span>Profitability and Growth:</span> <br> Strive for the profitability of both the company and its clients by delivering solutions that not only meet but exceed expectations, leading to client success and long-term partnerships. 🌐🖥️💡</p>
+            </div>
+
+            <div class="send__img">
+                <img src="{% static 'app/assets/img/send.png' %}" alt="">
+            </div>
+        </div>
+    </section>
+{% endblock content %}
