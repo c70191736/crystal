@@ -103,6 +103,12 @@
                         <li class="nav__item"><a href="#mission" class="nav__link">Our Mission</a></li>
                         <!-- <li class="nav__item"><a href="{% url 'login' %}" class="nav__link">Sign In/Up</a></li> -->
                         <li class="nav__item"><a href="{% url 'home' %}" class="nav__link">templates</a></li>
+                        <li class="nav__item">
+                            <form action="{% url 'search' %}" method="POST">
+                                {% csrf_token %}
+                                <input name="search" type="search" placeholder="example: portfolio" aria-label="Search" class="input-search">
+                                <button class="btn-search" type="submit"><i class='bx bx-search'></i></button>
+                            </form>
                         {% endif %}
                         {% if user.is_authenticated %}
                         <!-- <li class="nav__item"><a href="{% url 'logout' %}" class="nav__link">Log Out</a></li> -->
