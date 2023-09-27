@@ -101,10 +101,11 @@
                         <li class="nav__item"><a href="#about_us" class="nav__link">About us</a></li>
                         <li class="nav__item"><a href="#why_choose_us" class="nav__link">why choose us?</a></li>
                         <li class="nav__item"><a href="#mission" class="nav__link">Our Mission</a></li>
-                        <li class="nav__item"><a href="{% url 'login' %}" class="nav__link">Sign In/Up</a></li>
+                        <!-- <li class="nav__item"><a href="{% url 'login' %}" class="nav__link">Sign In/Up</a></li> -->
+                        <li class="nav__item"><a href="{% url 'home' %}" class="nav__link">templates</a></li>
                         {% endif %}
                         {% if user.is_authenticated %}
-                        <li class="nav__item"><a href="{% url 'logout' %}" class="nav__link">Log Out</a></li>
+                        <!-- <li class="nav__item"><a href="{% url 'logout' %}" class="nav__link">Log Out</a></li> -->
                         {% endif %}
                         <li><i class='bx bx-toggle-left change-theme' id="theme-button"></i></li>
                     </ul>
@@ -144,7 +145,7 @@
         
                 let handler = PaystackPop.setup({
                         key:'pk_live_67a55089e4829715b7fe2a879ce7da74297cb8a0',
-                        email: '{{request.user.email}}',
+                        email: 'crystal@gmail.com',
                         amount:'{{ post.amount }}' * 100,
                         currency:'NGN',
                         ref:'ccity'+Math.floor((Math.random() * 1000000000) + 1),
