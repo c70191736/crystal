@@ -5,7 +5,7 @@
 {% endblock title %}
 {% block content %}
 <section class="accessory section bd-container" id="accessory">
-    <div class="template_container accessory__content" style="background-color: white;">
+    <div class="template_container accessory__content" style="background-color: white;height: 800px;">
         <iframe src="/media/{{post.file}}" noborder="0" width="100%" scrolling="yes" seamless></iframe>
         {% if post.amount == 'free' %}
             <a href="/media/{{ post.folder }}" class="button accessory__button" download="{{ post.title }}">
