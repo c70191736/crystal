@@ -40,7 +40,7 @@ class Post(models.Model):
     title = models.CharField(max_length = 100, default='', blank=True)
     Image = models.ImageField(upload_to='image', default='', blank=True)
     folder = models.FileField(upload_to='folder', default='', blank=True)
-    file = models.FileField(upload_to='file', default='', blank=True)
+    file = models.URLField(max_length=200, default='', blank=True)
     amount = models.CharField(max_length = 20,choices = amount, default = 'none')
     author = models.ForeignKey(User, on_delete=models.CASCADE, default="")
     date_posted = models.DateTimeField(default=timezone.now)
